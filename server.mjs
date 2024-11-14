@@ -3,6 +3,7 @@ import connectDB from './config/db.mjs';
 import dotenv from 'dotenv';
 import userRoutes from './routes/api/users.mjs';
 import authRoutes from './routes/api/auth.mjs';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -14,9 +15,10 @@ connectDB();
 
 // Initialize middleware
 app.use(express.json({ extended: false }));
+app.use(cors());
 
 //Single endpoint just to test API. Send data to browser
-app.get('/', (req, res) => res.send('API Running'))
+app.get('/', (req, res) => res.send('API Running'));
 
 //Define Routes
 app.use('/api/users', userRoutes);
